@@ -15,7 +15,7 @@ const AdminPage = () => {
     queryFn: fetchAdminData,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  // if (isLoading) return <p>Loading...</p>;
   if (error)
     return (
       <p>

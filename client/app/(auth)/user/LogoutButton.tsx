@@ -8,12 +8,21 @@ import React from "react";
 const LogoutButton = () => {
   const Router = useRouter();
   const logout = async () => {
-    await axiosInstance.get("/logout", { withCredentials: true });
-    toast({
-      title: "Logout successful",
-      description: "You have successfully logged out.",
-    });
-    Router.push("/login");
+   try {
+     await axiosInstance.get("/logout", { withCredentials: true });
+     toast({
+       title: "Logout successful",
+       description: "You have successfully logged out.",
+     });
+     Router.push("/login");
+   } catch (err) {
+     toast({
+       variant: "destructive",
+       title: "Logout failed"+(err as any)?.message,
+       description: "Please try again.",
+     })
+    
+   }
   };
   return <Button variant={"destructive"} onClick={() => logout()}>Logout</Button>;
 };
